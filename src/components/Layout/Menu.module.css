@@ -1,0 +1,29 @@
+.Menu {
+    /*display: flex;*/
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*justify-content: center;*/
+    /*width: 100%;*/
+    /*height: 50px;*/
+}
+
+.MenuItem {
+    /*border-radius: 20%;*/
+    /*padding: 15px;*/
+
+    /*background: none;*/
+    /*color: inherit;*/
+    /*cursor: pointer;*/
+    /*outline: inherit;*/
+}
+
+.MenuAdd {
+    /*border-radius: 100%;*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+
+    /*background: #96e3ff;;*/
+    /*color: INHERIT;*/
+    /*cursor: pointer;*/
+    /*outline: inherit;*/
+}

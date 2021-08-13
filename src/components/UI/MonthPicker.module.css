@@ -1,0 +1,33 @@
+.MonthPicker {
+    /*border-radius: 14px;*/
+    /*background-color: white;*/
+}
+
+.MonthPicker div {
+    /*transition-property: background;*/
+    /*transition-duration: 2s;*/
+}
+
+.MonthPicker div:focus {
+    /*transition-duration: .3s;*/
+}
+
+.MonthPicker div input {
+    /*border: none;*/
+    /*text-align: center;*/
+    /*font-size: 15px;*/
+}
+
+.MonthPicker div input:focus {
+    /*outline: none;*/
+    /*pointer-events: none;*/
+    /*transition: .5s background;*/
+    /*background-color: #96e3ff;*/
+}
+
+.MonthOnlyPicker {
+    /*display: flex;*/
+}
+
+.pickerMonth {
+}

@@ -1,0 +1,29 @@
+.NumberViewer {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*flex-direction: column;*/
+    /*padding: 15px;*/
+}
+
+.NumberViewer div {
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
+}
+
+.vertical {
+    /*flex-direction: row;*/
+    /*padding-top: 0;*/
+    /*padding-bottom: 0;*/
+}
+
+.number {
+    /*font-weight: bold;*/
+}
+
+.red {
+    /*color: red;*/
+}
+
+.green {
+    /*color: green;*/
+}

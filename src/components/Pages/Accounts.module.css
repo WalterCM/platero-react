@@ -1,0 +1,20 @@
+.Accounts {
+    flex: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /*background-color: #404040;*/
+}
+
+.AccountsMain {
+    width: 300px;
+}
+
+.AccountsMonth {
+    padding: 15px;
+}
+
+.AccountsBalance {
+    padding: 15px;
+}

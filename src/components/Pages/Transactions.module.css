@@ -1,0 +1,12 @@
+.Transactions {
+    flex: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    /*background-color: #404040;*/
+}
+
+.TransactionsMain {
+    width: 300px;
+}

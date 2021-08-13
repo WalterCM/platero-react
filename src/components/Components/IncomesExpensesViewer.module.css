@@ -1,0 +1,10 @@
+.IncomesExpensesViewer {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+.IncomesExpensesViewer div {
+    padding-left: 15px;
+    padding-right: 15px;
+}
