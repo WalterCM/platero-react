@@ -33,7 +33,12 @@ const MonthPicker = props => {
     setNewDate(new Date(newDate.setFullYear(newDate.getFullYear() - 1)));
   };
 
-  const monthStr = startDate.toLocaleString('default', { month: 'long' });
+  let monthStr = startDate.toLocaleString('default', { month: 'long' });
+  const startYear = startDate.getFullYear()
+  if (startYear !== new Date().getFullYear()) {
+    monthStr += ', ' + startYear
+  }
+
   const year = newDate.getFullYear()
   const months = {
     Jan: 0,
@@ -62,9 +67,9 @@ const MonthPicker = props => {
         centered
       >
         <Modal.Header>
-          <Button variant="secondary" onClick={prevYear}></Button>
+          <Button variant="secondary" onClick={prevYear}>&lt;</Button>
           <Modal.Title>{year}</Modal.Title>
-          <Button variant="secondary" onClick={nextYear}></Button>
+          <Button variant="secondary" onClick={nextYear}>&gt;</Button>
         </Modal.Header>
         <Modal.Body>
           {
