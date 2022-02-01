@@ -21,8 +21,6 @@ const MonthPicker = props => {
   };
 
   const handleShow = () => {
-    console.log('startDate: ', startDate)
-    console.log('newDate: ', newDate)
     setNewDate(new Date(startDate))
     setShow(true);
   };
@@ -70,13 +68,9 @@ const MonthPicker = props => {
         </Modal.Header>
         <Modal.Body>
           {
-            Object.entries(months).map(([month, monthId]) => {
-              console.log('monthId: ', monthId)
-              return (
-                  <Button size="lg" variant="secondary" onClick={() => handleMonth(monthId)}>{month}</Button>
-              )
-
-            })
+            Object.entries(months).map(([month, monthId]) => (
+              <Button size="lg" variant="secondary" onClick={() => handleMonth(monthId)}>{month}</Button>
+            ))
           }
         </Modal.Body>
         <Modal.Footer>
