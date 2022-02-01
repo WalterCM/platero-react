@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import styles from './MonthPicker.module.css';
-import { Button, Col, Modal } from 'react-bootstrap';
+import {Button, Col, Modal, Row} from 'react-bootstrap';
 
 const MonthPicker = props => {
   const [startDate, setStartDate] = useState(new Date());
@@ -72,11 +72,21 @@ const MonthPicker = props => {
           <Button variant="secondary" onClick={nextYear}>&gt;</Button>
         </Modal.Header>
         <Modal.Body>
-          {
-            Object.entries(months).map(([month, monthId]) => (
-              <Button size="lg" variant="secondary" onClick={() => handleMonth(monthId)}>{month}</Button>
-            ))
-          }
+          <Row>
+            {
+              Object.entries(months).map(([month, monthId]) => (
+                  <Col xs={4} sm={4} md={4} lg={3} xl={2} >
+                    <Button
+                        className={styles.MonthButton}
+                        variant="secondary"
+                        onClick={() => handleMonth(monthId)}>
+                      {// Label of the button. The month string
+                      month}
+                    </Button>
+                  </Col>
+              ))
+            }
+          </Row>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

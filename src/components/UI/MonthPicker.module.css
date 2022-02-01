@@ -3,6 +3,10 @@
     /*background-color: white;*/
 }
 
+.MonthButton {
+    width: 100%;
+}
+
 .MonthPicker div {
     /*transition-property: background;*/
     /*transition-duration: 2s;*/
