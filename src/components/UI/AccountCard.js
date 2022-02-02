@@ -4,6 +4,7 @@ import { Card, Container } from 'react-bootstrap';
 const AccountCard = props => {
   return (
     <Card
+      onClick={props.onClick}
       className={styles.Card}
     >
       <Card.Title className={"p-3 bg-" + props.bg}>
