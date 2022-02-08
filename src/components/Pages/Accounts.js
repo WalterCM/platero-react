@@ -1,10 +1,11 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useRef } from 'react';
 import {Button, Card, Col, Container, Image, Modal, Row} from 'react-bootstrap';
 
 import AccountCard from '../UI/AccountCard';
 import Header from '../Layout/Header';
 import Section from '../Layout/Section';
 import styles from './Accounts.module.css';
+import ColorPicker from "../UI/ColorPicker";
 
 const Accounts = props => {
   const [show, setShow] = useState(false);
@@ -43,7 +44,9 @@ const Accounts = props => {
     currency: null,
     balance: null,
     type: null
-  })
+  });
+  const colorPickerRef = useRef();
+
   const types = {
     C: 'Checking Account',
     S: 'Savings',
@@ -56,8 +59,9 @@ const Accounts = props => {
   }
   const handleClose = () => setShow(false);
   const handleSave = () => {
-
+    console.log(colorPickerRef)
   };
+
   return (
     <div>
       <Header title="Accounts"/>
@@ -111,7 +115,7 @@ const Accounts = props => {
               {types[currentAccount.type]}
             </Col>
             <Col xs={6} className="d-flex justify-content-center">
-              <Button variant={currentAccount.bg} />
+              <ColorPicker starting={currentAccount.bg} ref={colorPickerRef}/>
             </Col>
           </Row>
         </Modal.Body>
