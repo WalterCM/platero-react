@@ -11,7 +11,7 @@ import Header from '../Layout/Header';
 import Section from '../Layout/Section';
 
 const Dashboard = props => {
-  const [month, setMonth] = useState({year: 2014, month: 11})
+  const [month, setMonth] = useState();
   const [incomes, setIncomes] = useState(0);
   const [expenses, setExpenses] = useState(0);
 
@@ -37,7 +37,7 @@ const Dashboard = props => {
         title="Dashboard"
         image="https://www.smtm.co/assets/lp-carousel_man_bag_money-22b59357dfeab5b9febdeacb9b70b7c9.png"
       >
-        <MonthPicker className="my-3" />
+        <MonthPicker updateDate={setMonth} className="my-3" />
         <AccountsBalance />
         <IncomesExpensesViewer />
       </Header>

@@ -1,6 +1,4 @@
 import { Fragment, useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 import styles from './MonthPicker.module.css';
 import {Button, Col, Modal, Row} from 'react-bootstrap';
@@ -12,12 +10,15 @@ const MonthPicker = props => {
 
   const handleClose = () => setShow(false);
   const handleCurrentMonth = () => {
-    setStartDate(new Date());
-    handleClose()
+    handleMonth(new Date());
   };
   const handleMonth = (month) => {
-    setStartDate(new Date(newDate.setMonth(month)))
-    handleClose()
+    setStartDate(new Date(newDate.setMonth(month)));
+    handleClose();
+    if (props.updateDate) {
+      console.log('updating startDate: ', startDate)
+      props.updateDate(startDate);
+    }
   };
 
   const handleShow = () => {
@@ -58,6 +59,7 @@ const MonthPicker = props => {
   return (
     <Fragment>
       <Button onClick={handleShow} className={props.className}>{monthStr}</Button>
+      <input />
 
       <Modal
         show={show}
@@ -75,15 +77,18 @@ const MonthPicker = props => {
           <Row>
             {
               Object.entries(months).map(([month, monthId]) => (
-                  <Col xs={4} sm={4} md={4} lg={3} xl={2} >
-                    <Button
-                        className={styles.MonthButton}
-                        variant="secondary"
-                        onClick={() => handleMonth(monthId)}>
-                      {// Label of the button. The month string
-                      month}
-                    </Button>
-                  </Col>
+                <Col xs={4} sm={4} md={4} lg={3} xl={2}>
+                  <Button
+                    className={styles.MonthButton}
+                    variant="secondary"
+                    onClick={() => handleMonth(monthId)}
+                  >
+                    {
+                        // Label of the button. The month string
+                        month
+                    }
+                  </Button>
+                </Col>
               ))
             }
           </Row>
