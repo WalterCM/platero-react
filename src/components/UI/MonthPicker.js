@@ -1,28 +1,33 @@
-import { Fragment, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import styles from './MonthPicker.module.css';
 import {Button, Col, Modal, Row} from 'react-bootstrap';
 
-const MonthPicker = props => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [newDate, setNewDate] = useState(new Date());
+const MonthPicker = React.forwardRef((props, ref) => {
+  const today = new Date();
+  const [date, setDate] = useState(today);
+  const [newDate, setNewDate] = useState(today);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleCurrentMonth = () => {
-    handleMonth(new Date());
+    handleMonth(null, today)
   };
-  const handleMonth = (month) => {
-    setStartDate(new Date(newDate.setMonth(month)));
+  const handleMonth = (month, date_) => {
+    if (date_) {
+      setDate(date_)
+    } else if (month) {
+      setDate(new Date(newDate.setMonth(month)));
+    }
+
     handleClose();
-    if (props.updateDate) {
-      console.log('updating startDate: ', startDate)
-      props.updateDate(startDate);
+    if (props.onPick) {
+      props.onPick(date);
     }
   };
 
   const handleShow = () => {
-    setNewDate(new Date(startDate))
+    setNewDate(new Date(date))
     setShow(true);
   };
 
@@ -34,8 +39,8 @@ const MonthPicker = props => {
     setNewDate(new Date(newDate.setFullYear(newDate.getFullYear() - 1)));
   };
 
-  let monthStr = startDate.toLocaleString('default', { month: 'long' });
-  const startYear = startDate.getFullYear()
+  let monthStr = date.toLocaleString('default', { month: 'long' });
+  const startYear = date.getFullYear()
   if (startYear !== new Date().getFullYear()) {
     monthStr += ', ' + startYear
   }
@@ -59,7 +64,7 @@ const MonthPicker = props => {
   return (
     <Fragment>
       <Button onClick={handleShow} className={props.className}>{monthStr}</Button>
-      <input />
+      <input value={date} ref={ref} hidden />
 
       <Modal
         show={show}
@@ -104,6 +109,6 @@ const MonthPicker = props => {
       </Modal>
     </Fragment>
   )
-};
+});
 
 export default MonthPicker;
