@@ -14,16 +14,19 @@ const Dashboard = props => {
   const [month, setMonth] = useState();
   const [favoriteAccounts, setFavoriteAccounts] = useState([
     {
+      id: 1,
       name: 'Ahorro',
       balance: 356.5,
       bg: 'danger'
     },
     {
+      id: 2,
       name: 'Cuenta corriente',
       balance: 800.0,
       bg: 'info'
     },
     {
+      id: 3,
       name: 'Cuenta 3',
       balance: 0.0
     }
@@ -47,7 +50,7 @@ const Dashboard = props => {
       <Section title="Accounts">
         {favoriteAccounts.map(account => {
           return (
-            <Col xs={12} sm={12} md={6} lg={4} xl={4} className="py-1">
+            <Col key={account.id} xs={12} sm={12} md={6} lg={4} xl={4} className="py-1">
               <AccountCard
                 name={account.name}
                 balance={account.balance}

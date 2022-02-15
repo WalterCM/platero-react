@@ -1,7 +1,7 @@
-import Card2 from '../UI/Card2';
 
 import styles from './Menu.module.css';
 import { Col, Container, Form, InputGroup, Nav, Navbar, NavDropdown, Row, Button } from 'react-bootstrap';
+import Login from '../Forms/Login';
 
 
 const Menu = props => {
@@ -17,21 +17,7 @@ const Menu = props => {
             <Nav.Link href="">Transactions</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Form>
-              <Row className="justify-content-sm-start justify-content-lg-end">
-                <Col sm={4}>
-                  <Form.Control size="sm" type="email" placeholder="Enter email" />
-                </Col>
-                <Col sm={4}>
-                  <Form.Control size="sm" type="password" placeholder="Enter password" />
-                </Col>
-                <Col sm={2}>
-                  <Button size="sm" variant="primary" type="submit">
-                    Login
-                  </Button>
-                </Col>
-              </Row>
-            </Form>
+            <Login />
           </Nav>
         </Navbar.Collapse>
       </Container>

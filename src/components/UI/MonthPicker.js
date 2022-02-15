@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 
 import styles from './MonthPicker.module.css';
-import {Button, Col, Modal, Row} from 'react-bootstrap';
+import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
 const MonthPicker = React.forwardRef((props, ref) => {
   const today = new Date();
@@ -64,7 +64,7 @@ const MonthPicker = React.forwardRef((props, ref) => {
   return (
     <Fragment>
       <Button onClick={handleShow} className={props.className}>{monthStr}</Button>
-      <input value={date} ref={ref} hidden />
+      <Form.Control value={date} ref={ref} hidden readOnly />
 
       <Modal
         show={show}
@@ -82,7 +82,7 @@ const MonthPicker = React.forwardRef((props, ref) => {
           <Row>
             {
               Object.entries(months).map(([month, monthId]) => (
-                <Col xs={4} sm={4} md={4} lg={3} xl={2}>
+                <Col key={month} xs={4} sm={4} md={4} lg={3} xl={2}>
                   <Button
                     className={styles.MonthButton}
                     variant="secondary"
