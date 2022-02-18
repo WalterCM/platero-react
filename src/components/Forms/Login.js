@@ -14,10 +14,11 @@ const Login = () => {
         },
         body: JSON.stringify({
           email: values.email,
-          password: values.email
+          password: values.password
         })
       })
       const data = response.json();
+      console.log('data: ', data)
     } catch (errors) {
       console.log('ERROR');
     }
