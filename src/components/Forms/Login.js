@@ -7,18 +7,17 @@ import { API_URL } from '../../config';
 const Login = () => {
   const login = async (values) => {
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(API_URL + 'api/users/token/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: {
+        body: JSON.stringify({
           email: values.email,
           password: values.email
-        }
+        })
       })
       const data = response.json();
-      console.log(data)
     } catch (errors) {
       console.log('ERROR');
     }
