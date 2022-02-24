@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Col, Container, Image, Row } from 'react-bootstrap';
 
 import MonthPicker from '../UI/MonthPicker';
@@ -9,28 +9,18 @@ import styles from './Dashboard.module.css';
 import AccountCard from '../UI/AccountCard';
 import Header from '../Layout/Header';
 import Section from '../Layout/Section';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAccountList } from '../../store/profile-actions';
 
 const Dashboard = props => {
+  const dispatch = useDispatch();
+
   const [month, setMonth] = useState();
-  const [favoriteAccounts, setFavoriteAccounts] = useState([
-    {
-      id: 1,
-      name: 'Ahorro',
-      balance: 356.5,
-      bg: 'danger'
-    },
-    {
-      id: 2,
-      name: 'Cuenta corriente',
-      balance: 800.0,
-      bg: 'info'
-    },
-    {
-      id: 3,
-      name: 'Cuenta 3',
-      balance: 0.0
-    }
-  ]);
+  const accounts = useSelector(state => state.accounts.list);
+
+  useEffect(() => {
+    dispatch(getAccountList());
+  }, []);
 
   const onMonthPickHandler = () => {
 
@@ -48,7 +38,7 @@ const Dashboard = props => {
       </Header>
 
       <Section title="Accounts">
-        {favoriteAccounts.map(account => {
+        {accounts.map(account => {
           return (
             <Col key={account.id} xs={12} sm={12} md={6} lg={4} xl={4} className="py-1">
               <AccountCard

@@ -1,27 +1,15 @@
+
 import { Formik } from 'formik';
 
+import { loginRequest } from '../../store/auth-actions';
+
 import { Button, Col, Form, Row } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
-import { API_URL } from '../../config';
-
-const Login = () => {
+const LoginForm = () => {
+  const dispatch = useDispatch();
   const login = async (values) => {
-    try {
-      const response = await fetch(API_URL + 'api/users/token/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password
-        })
-      })
-      const data = response.json();
-      console.log('data: ', data)
-    } catch (errors) {
-      console.log('ERROR');
-    }
+    dispatch(loginRequest(values));
   };
   return (
     <Formik
@@ -73,4 +61,4 @@ const Login = () => {
   )
 }
 
-export default Login;
+export default LoginForm;

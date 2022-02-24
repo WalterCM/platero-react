@@ -1,7 +1,7 @@
 
 import styles from './Menu.module.css';
 import { Col, Container, Form, InputGroup, Nav, Navbar, NavDropdown, Row, Button } from 'react-bootstrap';
-import Login from '../Forms/Login';
+import LoginForm from '../Forms/Login';
 
 
 const Menu = props => {
@@ -17,7 +17,7 @@ const Menu = props => {
             <Nav.Link href="">Transactions</Nav.Link>
           </Nav>
           <Nav className="ms-auto">
-            <Login />
+            <LoginForm />
           </Nav>
         </Navbar.Collapse>
       </Container>
