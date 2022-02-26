@@ -13,19 +13,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAccountList } from '../../store/accounts-actions';
 
 const Dashboard = props => {
+  const [range, setRange] = useState({})
   const dispatch = useDispatch();
-
-  const [start_date, setStartDate] = useState();
-  const [end_date, setEndDate] = useState();
   const accounts = useSelector(state => state.accounts.list);
+  const [visited, setVisited] = useState(false);
 
   useEffect(() => {
-    dispatch(getAccountList({start_date, end_date}));
-  }, [start_date, end_date, dispatch]);
+    if (!visited) {
+      setVisited(true);
+      return;
+    }
+    dispatch(getAccountList(range));
+  }, [range]);
 
-  const handlePick = (starTDate, endDate) => {
-    setStartDate(starTDate);
-    setEndDate(endDate);
+  const handlePick = (range) => {
+    setRange(range);
   };
 
   return (

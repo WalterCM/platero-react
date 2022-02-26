@@ -10,7 +10,7 @@ const generateFetch = (config) => {
     if (config.absoluteUrl) {
       url = config.absoluteUrl
     }
-    if (config.params) {
+    if (Object.entries(config.params).length > 0) {
       url += '?' + new URLSearchParams(config.params).toString();
     }
     const sendRequest = async () => {

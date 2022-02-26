@@ -8,20 +8,18 @@ const MonthPicker = React.forwardRef(({onPick, className}, ref) => {
   const [date, setDate] = useState(today);
   const [newDate, setNewDate] = useState(today);
   const [show, setShow] = useState(false);
-  const [visited, setVisited] = useState()
 
   useEffect(() => {
-    if (!visited) {
-      setVisited(true);
-      return;
-    }
     handleClose();
     if (onPick) {
-      const range = {
-        start_date: new Date(date.getFullYear(), date.getMonth(), 1).toISOString().split('T')[0],
-        end_date: new Date(date.getFullYear(), date.getMonth() + 1, 0).toISOString().split('T')[0],
-      }
-      onPick(range);
+      onPick({
+        start_date: (
+          new Date(date.getFullYear(), date.getMonth(), 1)
+        ).toISOString().split('T')[0],
+        end_date: (
+          new Date(date.getFullYear(), date.getMonth() + 1, 0)
+        ).toISOString().split('T')[0],
+      });
     }
   }, [date]);
 
@@ -32,7 +30,7 @@ const MonthPicker = React.forwardRef(({onPick, className}, ref) => {
   const handleMonth = (month, date_) => {
     if (date_) {
       setDate(date_)
-    } else if (month) {
+    } else if (month != null) {
       setDate(new Date(newDate.setMonth(month)));
     }
   };
