@@ -10,7 +10,7 @@ import AccountCard from '../UI/AccountCard';
 import Header from '../Layout/Header';
 import Section from '../Layout/Section';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAccountList } from '../../store/profile-actions';
+import { getAccountList } from '../../store/accounts-actions';
 
 const Dashboard = props => {
   const dispatch = useDispatch();
@@ -19,7 +19,8 @@ const Dashboard = props => {
   const accounts = useSelector(state => state.accounts.list);
 
   useEffect(() => {
-    dispatch(getAccountList());
+    // TODO: Implementar filtros aqui
+    dispatch(getAccountList({test: 1}));
   }, []);
 
   const onMonthPickHandler = () => {
