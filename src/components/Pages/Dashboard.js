@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Card, Col, Container, Image, Row } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 import MonthPicker from '../UI/MonthPicker';
 import IncomesExpensesViewer from '../Components/IncomesExpensesViewer';
@@ -15,16 +15,17 @@ import { getAccountList } from '../../store/accounts-actions';
 const Dashboard = props => {
   const dispatch = useDispatch();
 
-  const [month, setMonth] = useState();
+  const [start_date, setStartDate] = useState();
+  const [end_date, setEndDate] = useState();
   const accounts = useSelector(state => state.accounts.list);
 
   useEffect(() => {
-    // TODO: Implementar filtros aqui
-    dispatch(getAccountList({test: 1}));
-  }, []);
+    dispatch(getAccountList({start_date, end_date}));
+  }, [start_date, end_date, dispatch]);
 
-  const onMonthPickHandler = () => {
-
+  const handlePick = (starTDate, endDate) => {
+    setStartDate(starTDate);
+    setEndDate(endDate);
   };
 
   return (
@@ -33,7 +34,7 @@ const Dashboard = props => {
         title="Dashboard"
         image="https://www.smtm.co/assets/lp-carousel_man_bag_money-22b59357dfeab5b9febdeacb9b70b7c9.png"
       >
-        <MonthPicker onPick={onMonthPickHandler} className="my-3" />
+        <MonthPicker onPick={handlePick} className="my-3" />
         <AccountsBalance />
         <IncomesExpensesViewer />
       </Header>

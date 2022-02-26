@@ -1,13 +1,29 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 
 import styles from './MonthPicker.module.css';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
-const MonthPicker = React.forwardRef((props, ref) => {
+const MonthPicker = React.forwardRef(({onPick, className}, ref) => {
   const today = new Date();
   const [date, setDate] = useState(today);
   const [newDate, setNewDate] = useState(today);
   const [show, setShow] = useState(false);
+  const [visited, setVisited] = useState()
+
+  useEffect(() => {
+    if (!visited) {
+      setVisited(true);
+      return;
+    }
+    handleClose();
+    if (onPick) {
+      const range = {
+        start_date: new Date(date.getFullYear(), date.getMonth(), 1).toISOString().split('T')[0],
+        end_date: new Date(date.getFullYear(), date.getMonth() + 1, 0).toISOString().split('T')[0],
+      }
+      onPick(range);
+    }
+  }, [date]);
 
   const handleClose = () => setShow(false);
   const handleCurrentMonth = () => {
@@ -18,11 +34,6 @@ const MonthPicker = React.forwardRef((props, ref) => {
       setDate(date_)
     } else if (month) {
       setDate(new Date(newDate.setMonth(month)));
-    }
-
-    handleClose();
-    if (props.onPick) {
-      props.onPick(date);
     }
   };
 
@@ -63,10 +74,11 @@ const MonthPicker = React.forwardRef((props, ref) => {
 
   return (
     <Fragment>
-      <Button onClick={handleShow} className={props.className}>{monthStr}</Button>
+      <Button onClick={handleShow} className={className}>{monthStr}</Button>
       <Form.Control value={date} ref={ref} hidden readOnly />
 
       <Modal
+        animation={false}
         show={show}
         onHide={handleClose}
         size="lg"
