@@ -1,26 +1,33 @@
-import Sidebar from './components/Layout/Sidebar';
-import Dashboard from './components/Pages/Dashboard';
+import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 
-import styles from './App.module.css';
+import { Switch, Route } from 'react-router-dom';
+
+import Menu from './components/Layout/Menu';
+import Dashboard from './components/Pages/Dashboard';
 import Landing from './components/Pages/Landing';
 import Accounts from './components/Pages/Accounts';
-import Menu from './components/Layout/Menu';
 import Transactions from './components/Pages/Transactions';
-
-import { useSelector } from 'react-redux';
-import { useContext } from 'react';
 
 function App() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-  const landing = <Landing />
-  const app1 = <Dashboard />
-  const app2 = <Accounts />
-  const app3 = <Transactions />
   return (
     <div>
       <Menu />
       {!isAuthenticated && <Landing />}
-      {isAuthenticated && <Dashboard />};
+      {isAuthenticated &&
+        <Switch>
+          <Route path="/" exact>
+            <Dashboard />
+          </Route>
+          <Route path="/accounts">
+            <Accounts />
+          </Route>
+          <Route path="/transactions">
+            <Transactions />
+          </Route>
+        </Switch>
+      }
     </div>
   );
 }
