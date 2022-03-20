@@ -13,7 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAccountList } from '../../store/accounts-actions';
 
 const Dashboard = props => {
-  const [range, setRange] = useState({})
+  const [year, setYear] = useState()
+  const [month, setMonth] = useState()
   const dispatch = useDispatch();
   const accounts = useSelector(state => state.accounts.list);
   const [visited, setVisited] = useState(false);
@@ -23,11 +24,16 @@ const Dashboard = props => {
       setVisited(true);
       return;
     }
-    dispatch(getAccountList(range));
-  }, [range]);
+    dispatch(getAccountList({year, month}));
+  }, [year, month]);
 
-  const handlePick = (range) => {
-    setRange(range);
+  const handlePick = (newYear, newMonth) => {
+    if (year !== newYear) {
+      setYear(newYear);
+    }
+    if (month !== newMonth) {
+      setMonth(newMonth);
+    }
   };
 
   return (

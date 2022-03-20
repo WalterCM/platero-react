@@ -12,14 +12,10 @@ const MonthPicker = React.forwardRef(({onPick, className}, ref) => {
   useEffect(() => {
     handleClose();
     if (onPick) {
-      onPick({
-        start_date: (
-          new Date(date.getFullYear(), date.getMonth(), 1)
-        ).toISOString().split('T')[0],
-        end_date: (
-          new Date(date.getFullYear(), date.getMonth() + 1, 0)
-        ).toISOString().split('T')[0],
-      });
+      onPick(
+        date.getFullYear(),
+        date.getMonth()
+      );
     }
   }, [date]);
 
