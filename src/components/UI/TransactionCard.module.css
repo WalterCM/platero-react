@@ -1,0 +1,28 @@
+.Card {
+    border: 0;
+}
+
+.Card:hover {
+    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.4);
+}
+
+.TransactionName {
+
+}
+
+.TransactionCategory {
+
+}
+
+.TransactionAccount {
+
+}
+
+.TransactionAmount {
+
+}
+
+.TransactionCategory, .TransactionAccount, .TransactionAmount {
+    font-size: 10px;
+    color: gray
+}

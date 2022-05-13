@@ -55,7 +55,7 @@ const Transactions = props => {
       <Section>
         {transactions.map(transaction => {
           return (
-            <Col xs={12} sm={12} md={6} lg={4} xl={4} className="py-1">
+            <Col key={transaction.id} xs={12} className="p-1">
               <TransactionCard
                 key={transaction.id}
                 amount={transaction.amount}
