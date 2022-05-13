@@ -59,7 +59,7 @@ const Accounts = props => {
   }
   const handleClose = () => setShow(false);
   const handleSave = () => {
-    console.log(colorPickerRef)
+    // console.log(colorPickerRef)
   };
 
   return (

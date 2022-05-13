@@ -1,34 +1,31 @@
-import { API_URL } from '../config';
 
 import { authActions } from './auth-slice';
+import generateFetch  from './fetch';
 
 export const loginRequest = (values) => {
-  return async (dispatch) => {
-    const sendRequest = async () => {
-      const response = await fetch(API_URL + 'api/users/token/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-      const data = await response.json();
+  return generateFetch({
+    url: 'api/users/token/',
+    method: 'POST',
+    body: values,
+    getError: () => {},
+    process: (data, dispatch) => {
       const access = data.access;
       const refresh = data.refresh;
       dispatch(authActions.login({ access, refresh }));
-    };
+    },
+  })
+};
 
-    try {
-      await sendRequest();
-    } catch (error) {
-
-    }
-  }
+export const refreshRequest = (values) => {
+  return generateFetch({
+    url: 'api/users/token/refresh/',
+    method: 'POST',
+    body: values,
+    getError: () => {},
+    process: (data, dispatch) => {
+      const access = data.access;
+      const refresh = data.refresh;
+      dispatch(authActions.login({ access, refresh }));
+    },
+  })
 };

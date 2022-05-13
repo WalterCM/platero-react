@@ -3,17 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    isAuthenticated: !!(localStorage.getItem('access')),
+    isAuthenticated: false,
     access: localStorage.getItem('access'),
     refresh: localStorage.getItem('refresh')
   },
   reducers: {
     login(state, action) {
       state.isAuthenticated = true
-      state.access = action.payload.access;
-      state.refresh = action.payload.refresh;
-      localStorage.setItem('access', action.payload.access);
-      localStorage.setItem('refresh', action.payload.refresh);
+      const new_access = action.payload.access
+      const new_refresh = action.payload.refresh
+      if (new_access) {
+        state.access = new_access;
+        localStorage.setItem('access', new_access);
+      }
+
+      if (new_refresh) {
+        state.access = new_refresh;
+        localStorage.setItem('refresh', new_refresh);
+      }
     },
     logout(state) {
       state.isAuthenticated = false

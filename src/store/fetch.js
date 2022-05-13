@@ -10,16 +10,22 @@ const generateFetch = (config) => {
     if (config.absoluteUrl) {
       url = config.absoluteUrl
     }
-    if (Object.entries(config.params).length > 0) {
+    if (config.params && Object.entries(config.params).length > 0) {
       url += '?' + new URLSearchParams(config.params).toString();
     }
+    let headers = {
+      'Content-Type': config.contentType || 'application/json'
+    }
+
+    if (!config.anonymous) {
+      headers['Authorization'] = 'Bearer ' + access
+    }
+
     const sendRequest = async () => {
       const response = await fetch(url, {
         method: config.method || 'GET',
-        headers: {
-          'Content-Type': config.contentType || 'application/json',
-          'Authorization': 'Bearer ' + access
-        },
+        headers,
+        body: JSON.stringify(config.body),
       });
 
       if (!response.ok) {
